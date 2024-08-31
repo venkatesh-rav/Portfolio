@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Personal Webpage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            overflow-x: hidden;
+        }
+        header {
+            background-color: #004080;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        nav {
+            background-color: #003366;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        section {
+            padding: 20px;
+            max-width: 900px;
+            margin: auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 0;
+            left: 100%;
+            opacity: 0;
+            transition: left 0.5s ease, opacity 0.5s ease;
+            width: 90%;
+        }
+        section.active {
+            left: 5%;
+            opacity: 1;
+        }
+        h2 {
+            color: #004080;
+            border-bottom: 2px solid #004080;
+            padding-bottom: 10px;
+        }
+        .project-card {
+            background-color: #f4f4f4;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #004080;
+            border-radius: 4px;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .contact-form button {
+            background-color: #004080;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .contact-form button:hover {
+            background-color: #003366;
+        }
+        footer {
+            background-color: #004080;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Your Name</h1>
+</header>
+
+<nav>
+    <a id="about-link">About Me</a>
+    <a id="education-link">Education</a>
+    <a id="projects-link">Projects</a>
+    <a id="contact-link">Contact</a>
+    <a id="others-link">Others</a>
+</nav>
+
+<section id="about">
+    <h2>About Me</h2>
+    <p>Welcome to my personal webpage! I am passionate about autonomous vehicle simulation and vehicle dynamics modeling. With a background in [Your Background], I am dedicated to pushing the boundaries of automotive technology.</p>
+</section>
+
+<section id="education">
+    <h2>Education</h2>
+    <p>Bachelor of Science in [Your Degree] - [Your University]</p>
+    <p>Master of Science in [Your Degree] - [Your University]</p>
+    <p>Relevant Courses: Vehicle Dynamics, Control Systems, Autonomous Systems, Simulation Modeling</p>
+</section>
+
+<section id="projects">
+    <h2>Projects</h2>
+    <div class="project-card">
+        <h3>Project 1: Autonomous Vehicle Simulation</h3>
+        <p>Developed a simulation environment for autonomous vehicles, focusing on sensor fusion, path planning, and decision-making algorithms.</p>
+    </div>
+    <div class="project-card">
+        <h3>Project 2: Vehicle Dynamics Modeling</h3>
+        <p>Created a comprehensive model of vehicle dynamics to analyze and improve vehicle performance under various driving conditions.</p>
+    </div>
+    <!-- Add more projects as needed -->
+</section>
+
+<section id="contact">
+    <h2>Contact</h2>
+    <form class="contact-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+        
+        <button type="submit">Send Message</button>
+    </form>
+    <p>You can also find me on <a href="#" target="_blank">LinkedIn</a> and <a href="#" target="_blank">GitHub</a>.</p>
+</section>
+
+<section id="others">
+    <h2>Others</h2>
+    <p>This section can be used for additional content, such as publications, blog posts, or anything else you'd like to share.</p>
+</section>
+
+<footer>
+    <p>&copy; 2024 Your Name. All rights reserved.</p>
+</footer>
+
+<script>
+    // Function to hide all sections
+    function hideAllSections() {
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.remove('active');
+        });
+    }
+
+    // Function to show the selected section
+    function showSection(sectionId) {
+        hideAllSections();
+        document.getElementById(sectionId).classList.add('active');
+    }
+
+    // Event listeners for navigation links
+    document.getElementById('about-link').addEventListener('click', function() {
+        showSection('about');
+    });
+
+    document.getElementById('education-link').addEventListener('click', function() {
+        showSection('education');
+    });
+
+    document.getElementById('projects-link').addEventListener('click', function() {
+        showSection('projects');
+    });
+
+    document.getElementById('contact-link').addEventListener('click', function() {
+        showSection('contact');
+    });
+
+    document.getElementById('others-link').addEventListener('click', function() {
+        showSection('others');
+    });
+
+    // Show the "About Me" section by default on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        showSection('about');
+    });
+</script>
+
+</body>
+</html>
