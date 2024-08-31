@@ -11,12 +11,11 @@
             padding: 0;
             background-color: #f4f4f4;
             color: #333;
-            overflow-x: hidden;
         }
         header {
             background-color: #004080;
             color: white;
-            padding: 10px 0;
+            padding: 20px 0;
             text-align: center;
         }
         header h1 {
@@ -27,6 +26,10 @@
             background-color: #003366;
             padding: 10px;
             text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
         }
         nav a {
             color: white;
@@ -38,20 +41,14 @@
         section {
             padding: 20px;
             max-width: 900px;
-            margin: auto;
+            margin: 100px auto 20px auto;
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            position: center;
-            top: 0;
-            left: 100%;
-            opacity: 0;
-            transition: left 0.5s ease, opacity 0.5s ease;
-            width: 90%;
+            display: none;
         }
         section.active {
-            left: 5%;
-            opacity: 1;
+            display: block;
         }
         h2 {
             color: #004080;
@@ -62,6 +59,17 @@
             background-color: #f4f4f4;
             padding: 15px;
             margin: 10px 0;
+            border-left: 4px solid #004080;
+            border-radius: 4px;
+        }
+        .contact-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .contact-details {
+            background-color: #f4f4f4;
+            padding: 15px;
             border-left: 4px solid #004080;
             border-radius: 4px;
         }
@@ -90,9 +98,6 @@
             padding: 10px 0;
             margin-top: 20px;
         }
-        .hidden {
-            display: none;
-        }
     </style>
 </head>
 <body>
@@ -102,14 +107,14 @@
 </header>
 
 <nav>
-    <a id="about-link">About Me</a>
-    <a id="education-link">Education</a>
-    <a id="projects-link">Projects</a>
-    <a id="contact-link">Contact</a>
-    <a id="others-link">Others</a>
+    <a href="#about" onclick="showSection('about')">About Me</a>
+    <a href="#education" onclick="showSection('education')">Education</a>
+    <a href="#projects" onclick="showSection('projects')">Projects</a>
+    <a href="#contact" onclick="showSection('contact')">Contact</a>
+    <a href="#others" onclick="showSection('others')">Others</a>
 </nav>
 
-<section id="about">
+<section id="about" class="active">
     <h2>About Me</h2>
     <p>Welcome to my personal webpage! I am passionate about autonomous vehicle simulation and vehicle dynamics modeling. With a background in [Your Background], I am dedicated to pushing the boundaries of automotive technology.</p>
 </section>
@@ -136,19 +141,28 @@
 
 <section id="contact">
     <h2>Contact</h2>
-    <form class="contact-form">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-        
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-        
-        <button type="submit">Send Message</button>
-    </form>
-    <p>You can also find me on <a href="#" target="_blank">LinkedIn</a> and <a href="#" target="_blank">GitHub</a>.</p>
+    <div class="contact-container">
+        <div class="contact-details">
+            <h3>Contact Information</h3>
+            <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+            <p>Phone: (123) 456-7890</p>
+            <p>Location: Your City, Your Country</p>
+            <p>You can also find me on <a href="#" target="_blank">LinkedIn</a> and <a href="#" target="_blank">GitHub</a>.</p>
+        </div>
+        <form class="contact-form">
+            <h3>Send Me a Message</h3>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
 </section>
 
 <section id="others">
@@ -161,44 +175,17 @@
 </footer>
 
 <script>
-    // Function to hide all sections
-    function hideAllSections() {
-        document.querySelectorAll('section').forEach(section => {
+    function showSection(sectionId) {
+        // Hide all sections
+        const sections = document.querySelectorAll('section');
+        sections.forEach(section => {
             section.classList.remove('active');
         });
+
+        // Show the selected section
+        const activeSection = document.getElementById(sectionId);
+        activeSection.classList.add('active');
     }
-
-    // Function to show the selected section
-    function showSection(sectionId) {
-        hideAllSections();
-        document.getElementById(sectionId).classList.add('active');
-    }
-
-    // Event listeners for navigation links
-    document.getElementById('about-link').addEventListener('click', function() {
-        showSection('about');
-    });
-
-    document.getElementById('education-link').addEventListener('click', function() {
-        showSection('education');
-    });
-
-    document.getElementById('projects-link').addEventListener('click', function() {
-        showSection('projects');
-    });
-
-    document.getElementById('contact-link').addEventListener('click', function() {
-        showSection('contact');
-    });
-
-    document.getElementById('others-link').addEventListener('click', function() {
-        showSection('others');
-    });
-
-    // Show the "About Me" section by default on page load
-    document.addEventListener('DOMContentLoaded', function() {
-        showSection('about');
-    });
 </script>
 
 </body>
